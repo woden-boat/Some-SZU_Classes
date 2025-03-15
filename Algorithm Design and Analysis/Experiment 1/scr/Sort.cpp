@@ -24,11 +24,13 @@ void insert_sort(vector<int> &a,int n)
 void bubble_sort(vector<int> &a,int n)
 {
     for(int i = 1;i<n;i++)
-    {
+    {   
+        int cnt = 0;
         for(int j = 1;j<=n - i;j++)
         {
-            if(a[j] > a[j + 1]) swap(a[j],a[j + 1]);
+            if(a[j] > a[j + 1]) swap(a[j],a[j + 1]),cnt++;
         }
+        if(cnt == 0) break;
     }
 }
 
@@ -139,43 +141,68 @@ void quick_sort(vector<int> &a, int n)
 
 typedef void (*SortFuntion)(vector<int>&,int);
 
+void data_reader(string path,vector<int> &v)
+{
+    int n;
+    ifstream infile(path,ios::in);
+    if(infile.is_open() == 0) 
+    {   
+        char buff[1004];
+        _getcwd(buff,1004);
+        cerr << string(buff) << endl;
+        cerr << path << endl;
+        cerr << "open infile failed" << endl;
+        return;
+    }
+
+    infile >> n;
+    v.resize(n + 1);
+    for(int i = 1;i<=n;i++) infile >> v[i];
+}
+
 signed main()
 {   
-    string root = "./";
-    int len = 5;
+    string out_root = ".\\data\\";
+    string in_root = ".\\resource\\";
 
     vector<SortFuntion> fun = {bubble_sort,insert_sort,select_sort,merge_sort,quick_sort};
     vector<string> name = {"bubble_sort","insert_sort","select_sort","merge_sort","quick_sort"};
 
-    for(int x = 0;x<5;x++)
+    for(int idx = 0;idx<1;idx++)
     {
-        SortFuntion f = fun[x];
-        string s = name[x];
+        SortFuntion f = fun[idx];
 
-        for(int idx = 0;idx < 5;idx++)
+        for(int i = 0;i<5;i++)
         {
-            string in_rela_path = "/data/test_data_" + to_string(100 * (idx + 1)) + "k.txt";
-            string in_path = root + in_rela_path;
-            ifstream infile(in_path);
-            
-            int n;
-            infile >> n;
-            vector<int> a(n + 1);
-            for(int i = 1;i<=n;i++) infile >> a[i];
-            
-            cout << "Now " << s << " is running..." << endl;
-
-            auto st = chrono::high_resolution_clock::now();
-            f(a,n);
-            auto ed = chrono::high_resolution_clock::now();
-            auto duration = chrono::duration_cast<chrono::milliseconds>(ed - st);
-            double cost = duration.count();
-
-            string out_rela_path = "/data/" + s + ".txt";
-            string out_path = root + out_rela_path;
+            int scale = (i + 1) * 100;
+            string scale_path = to_string(scale) + "k\\";
+            _mkdir((out_root + scale_path).c_str());
+            string out_path = out_root + scale_path + "data.txt";
             ofstream outfile(out_path,ios::app);
+            if(outfile.is_open() == 0)
+            {
+                cerr << "failed to open outfile" << endl;
+                cerr << out_path << endl;
+                return 0;
+            }
+            for(int j = 1;j<=20;j++)
+            {
+                string file_name = to_string(j) + ".txt";
+                string in_path = in_root + scale_path + file_name;
+                cerr << in_path << endl;
+                vector<int> v;
+                data_reader(in_path,v);
 
-            outfile << cost / 1000 << " ";
+                cout << "Now " << name[idx] << " is Running in " << j << " " << scale << "k..." << endl; 
+                auto st = chrono::high_resolution_clock::now();
+                f(v,scale * 1000);
+                auto ed = chrono::high_resolution_clock::now();
+                auto duration = chrono::duration_cast<chrono::milliseconds>(ed - st);
+                double cost = duration.count();
+                outfile << cost << " ";
+                outfile.flush();
+                cout << cost << "ms\n";
+            }
         }
     }
 
