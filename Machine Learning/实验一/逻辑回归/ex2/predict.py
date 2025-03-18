@@ -1,24 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-% Instructions: Complete the following code to make predictions using
-%               your learned logistic regression parameters.
-%               You should set p to a vector of 0's and 1's
-:Time:  2020/7/28 13:40
-:Author:  lenjon
-"""
-import numpy as np
-
-from sigmoid import sigmoid
-
-
-def predict(theta, X):
-    m = X.shape[0]
-    p = np.zeros((m, 1))
-    pass
-    # ====================== YOUR CODE HERE ======================
-    # You should change this
-
-
-    # ========== END ==========
-    return p
+version https://git-lfs.github.com/spec/v1
+oid sha256:1c9797c558a2ea9c1448b3970243386d626a91ba2aec63a4d4b7dd8e93d89b1d
+size 556

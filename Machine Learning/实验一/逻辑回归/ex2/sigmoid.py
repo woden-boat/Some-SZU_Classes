@@ -1,20 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-sigmoid函数
-:Time:  2020/7/28 11:10
-:Author:  lenjon
-"""
-import numpy as np
-
-
-def sigmoid(z):
-    g = np.zeros(z.shape)
-    pass
-    # ====================== YOUR CODE HERE ======================
-    # You should change this
-
-
-
-    # ========== END ==========
-    return g
+version https://git-lfs.github.com/spec/v1
+oid sha256:0add208424428f54d4e9e045ce23c79e75c1443bb6986d4da3fd0a4d146b9a5e
+size 326

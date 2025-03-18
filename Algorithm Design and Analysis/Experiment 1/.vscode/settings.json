@@ -1,9 +1,3 @@
-{
-    "files.associations": {
-        "*.cpp": "cpp",
-        "iostream": "cpp",
-        "iosfwd": "cpp",
-        "ostream": "cpp",
-        "chrono": "cpp"
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:30029d2c55371fb4a5aae543e895643ea9adba030f3f0259e11cf8aa3195ee2a
+size 1949

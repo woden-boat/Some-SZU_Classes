@@ -1,17 +1,3 @@
-import numpy as np
-
-
-def computeCostMulti(X, y, theta):
-    """
-    同computeCost
-    """
-    theta = theta.reshape(1, -1)
-    m = X.shape[0]
-    #你需要正确的返回变量J
-    J = 0
-    pass
-    # ================ YOUR CODE HERE ================
-    # 根据代价函数公式编写代码，将结果存储在J中
-    # 提示：python中a@b表示a叉乘b
-
-    return J
+version https://git-lfs.github.com/spec/v1
+oid sha256:d3f584487b792b7a802c2b9a74e801bd588ab0ec46b415d34b11e134df96de8c
+size 437
